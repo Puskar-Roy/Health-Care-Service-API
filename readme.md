@@ -1,8 +1,12 @@
 
 # Health Care Service Project Documentation
 
+
+
 ## Overview
 The Health Care Service project is a web application that provides health-related services, utilizing a microservices architecture. It includes a Node.js application that interacts with MongoDB and Redis, enabling efficient data storage and caching.
+
+---
 
 ## Technologies Used
 - **Node.js**: A JavaScript runtime for building scalable server-side applications.
@@ -10,9 +14,11 @@ The Health Care Service project is a web application that provides health-relate
 - **Redis**: An in-memory data structure store, used as a cache.
 - **Docker**: Containerization platform to build, deploy, and manage applications.
 
+---
+
 ## Project Structure
 ```
-.
+
 ├── Dockerfile
 ├── docker-compose.yml
 ├── package.json
@@ -26,7 +32,25 @@ The Health Care Service project is a web application that provides health-relate
 │   └── index.js
 └── .gitignore
 ```
+---
 
+## API Endpoints
+
+The following table lists all available API endpoints, their request types, and descriptions:
+
+| Endpoint                     | Request Type | Description                                |
+|------------------------------|--------------|--------------------------------------------|
+| `/api/auth/login`           | POST         | Authenticate a user and retrieve a token. |
+| `/api/auth/register`        | POST         | Register a new user.                       |
+| `/api/users`                | GET          | Retrieve all users.                        |
+| `/api/users/:id`            | GET          | Retrieve a specific user by ID.           |
+| `/api/services`             | POST         | Add a new service.                         |
+| `/api/services`             | GET          | Retrieve all services.                     |
+| `/api/services/:id`         | PUT          | Update a specific service by ID.          |
+| `/api/services/:id`         | DELETE       | Delete a specific service by ID.          |
+
+
+---
 ## Setup Instructions
 
 ### Prerequisites
@@ -60,6 +84,66 @@ The following environment variables are set directly in the `docker-compose.yml`
       REDIS_HOST: redis
       REDIS_PORT: 6379
 ```
+
+
+---
+
+## Setup Instructions Without Docker
+
+If you don't have Docker installed, you can set up the project locally using Node.js. Follow the steps below:
+
+### Prerequisites
+
+- **Node.js**: Ensure you have Node.js installed on your machine. You can download it from [Node.js official website](https://nodejs.org/).
+- **MongoDB**: Install and run MongoDB on your local machine. You can find installation instructions [here](https://docs.mongodb.com/manual/installation/).
+- **Redis**: Install Redis on your local machine. Follow the instructions [here](https://redis.io/docs/getting-started/installation/).
+
+### Installation Steps
+
+1. **Clone the Repository**
+
+   Open your terminal and clone the project repository:
+
+   ```bash
+   git clone <repository-url>
+   cd health-care-service
+   ```
+
+2. **Install Dependencies**
+
+   Install the required dependencies using npm:
+
+   ```bash
+   npm install
+   ```
+
+3. **Set Up Environment Variables**
+
+   Create a `.env` file in the project root directory and add the following variables:
+
+   ```plaintext
+   MONGOURI=mongodb://localhost:27017/mydatabase
+   PORT=3000
+   JWT_SECRET=fhkjgskjvgdsykjfsgdkjhvbhdskjbvds
+   JWT_COOKIE_EXPIRES_IN=1d
+   DEV_MODE=DEV
+   REDIS_HOST=localhost
+   REDIS_PORT=6379
+   ```
+
+4. **Run the Application**
+
+   Start the application using:
+
+   ```bash
+   npm start
+   ```
+
+   The application will run on `http://localhost:3000`.
+
+---
+
+
 
 ## Directory Structure Explanation
 - `Dockerfile`: Contains instructions to build the Node.js application image.
