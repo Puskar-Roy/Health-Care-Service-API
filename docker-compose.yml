@@ -1,0 +1,41 @@
+version: '3.8'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: health-care-service-app
+    ports:
+      - "3000:3000"  
+    environment:
+      MONGOURI: mongodb://mongo:27017/mydatabase
+      PORT: 3000
+      JWT_SECRET: fhkjgskjvgdsykjfsgdkjhvbhdskjbvds
+      JWT_COOKIE_EXPIRES_IN: 1d
+      DEV_MODE: DEV
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+    depends_on:
+      - mongo
+      - redis
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+
+  mongo:
+    image: mongo:latest
+    container_name: mongo-db
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+  redis:
+    image: redis:7.0-alpine
+    container_name: redis-cache
+    ports:
+      - "6379:6379"
+    command: ["redis-server", "--appendonly", "yes"]
+
+volumes:
+  mongo-data:
