@@ -36,8 +36,8 @@ The Health Care Service project is a web application that provides health-relate
 1. Open your terminal.
 2. Clone the repository:
    ```bash
-   git clone <repository-url>
-   cd <repository-directory>
+   git clone https://github.com/Puskar-Roy/Health-Care-Service-API
+   cd Health-Care-Service-API
    ```
 
 ### Running the Application
@@ -92,7 +92,6 @@ The following environment variables are set directly in the `docker-compose.yml`
 ## License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## Contact
-For any questions or suggestions, please contact:
+## Author
 - **Name**: Puskar Roy
-- **Email**: cse.20221013.uitbu@gmail.com
+
