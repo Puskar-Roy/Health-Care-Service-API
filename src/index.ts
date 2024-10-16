@@ -41,7 +41,7 @@ app.all('*', (req: Request, res: Response, next: NextFunction) => {
 
 app.use(errorHandler);
 app.listen(process.env.PORT, () => {
-  console.log(`[⚡] Server Is Running on http://localhost:${config.PORT}`);
+  console.log(`[🤖] Server Is Running on http://localhost:${config.PORT}`);
 });
 
 export default app;
