@@ -1,0 +1,17 @@
+node_modules
+
+.env
+
+logs
+*.log
+
+dist
+
+Dockerfile
+docker-compose.yml
+
+.git
+.gitignore
+
+.vscode
+*.swp
