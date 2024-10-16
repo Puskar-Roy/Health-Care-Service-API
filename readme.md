@@ -4,7 +4,7 @@
 
 
 ## Overview
-The Health Care Service project is a web application that provides health-related services, utilizing a microservices architecture. It includes a Node.js application that interacts with MongoDB and Redis, enabling efficient data storage and caching.
+The Health Care Service project is a web application that provides health-related services . It includes a Node.js application that interacts with MongoDB and Redis, enabling efficient data storage and caching.
 
 ---
 
