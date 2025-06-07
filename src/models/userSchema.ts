@@ -1,29 +1,17 @@
-import { Schema, model } from 'mongoose';
-import { User } from '../interfaces/userInterface';
+import { Schema, model, Document } from "mongoose";
 
-const userSchema = new Schema<User>(
-  {
-    name: {
-      type: String,
-      required: true,
-    },
-    email: {
-      type: String,
-      required: true,
-      unique: true,
-    },
-    password: {
-      type: String,
-      required: true,
-    },
-    role: {
-      type: String,
-      required: true,
-      default: 'user',
-    },
-  },
-  { timestamps: true }
-);
-const UserModel = model<User>('User', userSchema);
+export interface IUser extends Document {
+  name: string;
+  email: string;
+  password: string;
+  role: "doctor" | "patient";
+}
 
-export default UserModel;
+const userSchema = new Schema<IUser>({
+  name: { type: String, required: true },
+  email: { type: String, unique: true, required: true },
+  password: { type: String, required: true },
+  role: { type: String, enum: ["doctor", "patient"], required: true },
+});
+
+export const User = model<IUser>("User", userSchema);

@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import ServiceModel from '../models/serviceSchema';
 import { IService } from '../interfaces/serviceInterface';
-import redisClient from '../config/redis'; 
+//import redisClient from '../config/redis'; 
 
 
 export const addService = async (req: Request, res: Response) => {
@@ -20,7 +20,7 @@ export const addService = async (req: Request, res: Response) => {
 
     await newService.save();
 
-    await redisClient.flushdb();
+    //await redisClient.flushdb();
 
     return res.status(201).json(newService);
   } catch (error) {
@@ -36,17 +36,16 @@ export const getAllServices = async (req: Request, res: Response) => {
     const skip = (page - 1) * limit;
     const cacheKey = `services:page:${page}:limit:${limit}`;
 
-    const cachedServices = await redisClient.get(cacheKey);
+    //const cachedServices = await redisClient.get(cacheKey);
 
-    if (cachedServices) {
-      return res.status(200).json(JSON.parse(cachedServices));
-    }
+    // if (cachedServices) {
+    //   return res.status(200).json(JSON.parse(cachedServices));
+    // }
 
    
     const services = await ServiceModel.find().skip(skip).limit(limit);
 
-    
-    await redisClient.set(cacheKey, JSON.stringify(services), 'EX', 60 * 60); 
+   // await redisClient.set(cacheKey, JSON.stringify(services), 'EX', 60 * 60);
 
     return res.status(200).json(services);
   } catch (error) {
@@ -71,7 +70,7 @@ export const updateService = async (req: Request, res: Response) => {
     }
 
  
-    await redisClient.flushdb(); 
+    //await redisClient.flushdb(); 
 
     return res.status(200).json(updatedService);
   } catch (error) {
@@ -90,7 +89,7 @@ export const deleteService = async (req: Request, res: Response) => {
     }
 
   
-    await redisClient.flushdb();
+    //await redisClient.flushdb();
 
     return res.status(200).json({ message: 'Service deleted successfully' });
   } catch (error) {

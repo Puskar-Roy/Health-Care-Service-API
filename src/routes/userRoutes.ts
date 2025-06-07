@@ -1,11 +1,10 @@
 import express, { Router } from 'express';
-import { getAllUsers, getUser } from '../controllers/userController';
-import { protect } from '../middleware/middleware';
+import { editDoctorProfile , editPatientProfile } from '../controllers/userController';
+import { authorizeRoles, authMiddleware } from '../middleware/middleware';
 
 const router: Router = express.Router();
 
-router.use(protect);
-router.get('/:id', getUser);
-router.get('/', getAllUsers);
+router.put("/doctor/edit", authMiddleware, authorizeRoles('doctor'), editDoctorProfile);
+router.put("/patient/edit", authMiddleware, authorizeRoles('patient'), editPatientProfile);
 
 export default router;

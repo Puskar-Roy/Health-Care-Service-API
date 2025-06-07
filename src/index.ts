@@ -11,6 +11,8 @@ import errorHandler from './middleware/errorMiddleware';
 import authRoutes from './routes/authRoutes';
 import userRoutes from './routes/userRoutes';
 import serviceRoutes from './routes/serviceRoutes';
+import appointmentRoutes from "./routes/appointmentRoutes";
+
 
 const app: Express = express();
 
@@ -30,6 +32,8 @@ import './database/connectDb';
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/services', serviceRoutes);
+app.use("/api/appointment", appointmentRoutes);
+
 
 app.get('/', (req: Request, res: Response) => {
   res.json({ success: true, message: 'API IS WORKING 🥳' });
