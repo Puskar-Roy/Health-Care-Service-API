@@ -32,23 +32,6 @@ The Health Care Service project is a web application that provides health-relate
 │   └── index.js
 └── .gitignore
 ```
----
-
-## API Endpoints
-
-The following table lists all available API endpoints, their request types, and descriptions:
-
-| Endpoint                     | Request Type | Description                                |
-|------------------------------|--------------|--------------------------------------------|
-| `/api/auth/login`           | POST         | Authenticate a user and retrieve a token. |
-| `/api/auth/register`        | POST         | Register a new user.                       |
-| `/api/users`                | GET          | Retrieve all users.                        |
-| `/api/users/:id`            | GET          | Retrieve a specific user by ID.           |
-| `/api/services`             | POST         | Add a new service.                         |
-| `/api/services`             | GET          | Retrieve all services.                     |
-| `/api/services/:id`         | PUT          | Update a specific service by ID.          |
-| `/api/services/:id`         | DELETE       | Delete a specific service by ID.          |
-
 
 ---
 ## Setup Instructions
