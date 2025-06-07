@@ -24,6 +24,7 @@
     "hpp": "^0.2.3",
     "ioredis": "^5.4.1",
     "jsonwebtoken": "^9.0.2",
+    "livekit-server-sdk": "^2.13.0",
     "mongoose": "^8.0.2",
     "morgan": "^1.10.0",
     "validator": "^13.11.0",
