@@ -2,9 +2,9 @@ import jwt from 'jsonwebtoken';
 import config from '../config/config';
 import { CorsOptions } from 'cors';
 import rateLimit from 'express-rate-limit';
-export const createToken = (_id: string) => {
-  return jwt.sign({ _id: _id }, config.JWT_SECRET, {
-    expiresIn: config.JWT_COOKIE_EXPIRES_IN,
+export const createToken = ({ _id, role }: { _id: string; role: string }) => {
+  return jwt.sign({ _id, role }, config.JWT_SECRET, {
+    expiresIn: "7d",
   });
 };
 
