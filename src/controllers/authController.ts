@@ -9,7 +9,7 @@ import validator from "validator";
 import { createToken } from "../util/utils";
 
 export const register = asyncHandler(async (req, res) => {
-  const { name, email, password, role, specialization, age, gender } = req.body;
+  const { name, email, password, role, specialization, age, gender , height , weight , bloodGroup } = req.body;
 
   if (!name || !email || !password || !role) {
     return res.status(400).json({
@@ -85,6 +85,9 @@ export const register = asyncHandler(async (req, res) => {
         user: user._id,
         age,
         gender,
+        weight,
+        height,
+        bloodGroup,
         medicalHistory: [],
       });
     } else {
@@ -221,6 +224,9 @@ export const patientLogin = asyncHandler(async (req, res) => {
             age: patientProfile.age,
             gender: patientProfile.gender,
             medicalHistory: patientProfile.medicalHistory,
+            height : patientProfile.height,
+            weight : patientProfile.weight,
+            bloodGroup : patientProfile.bloodGroup
           },
         },
       },
