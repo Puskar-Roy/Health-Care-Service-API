@@ -72,6 +72,7 @@ export const getAvailableSlots = async (req: Request, res: Response) => {
       if (!bookedTimes.includes(timeStr)) {
         availableSlots.push(timeStr);
       }
+
       current.setMinutes(current.getMinutes() + daySlots.slotDuration);
     }
 
