@@ -16,7 +16,7 @@ import { AccessToken } from "livekit-server-sdk";
 
 const app: Express = express();
 
-app.use(config.DEV_ENV === 'PROD' ? cors(corsOptions) : cors());
+app.use(config.DEV_ENV === "PROD" ? cors(corsOptions) : cors());
 app.set("trust proxy", config.DEV_ENV === "PROD" ? true : false);
 app.use(express.json());
 app.use(helmet());
@@ -34,12 +34,17 @@ app.use("/api/services", serviceRoutes);
 app.use("/api/appointment", appointmentRoutes);
 
 app.get("/", (req: Request, res: Response) => {
-  res.json({ success: true, message: "API IS WORKING 🥳" });
+  res.json({
+    success: true,
+    message: "API IS WORKING 🥳",
+    uptime: process.uptime(),
+    timestamp: new Date().toISOString(),
+  });
 });
 app.post("/getToken", async (req, res) => {
   const { participantName, roomName } = req.body;
-  console.log('calling bro');
-  
+  console.log("calling bro");
+
   if (!participantName || !roomName) {
     return res.status(400).json({ message: "Name and room required." });
   }
@@ -63,7 +68,7 @@ app.post("/getToken", async (req, res) => {
 
   const jwt = await token.toJwt();
   console.log(jwt);
-  
+
   res.json({ token: jwt });
 });
 app.all("*", (req: Request, res: Response, next: NextFunction) => {
@@ -76,4 +81,3 @@ app.listen(process.env.PORT, () => {
 });
 
 export default app;
-
