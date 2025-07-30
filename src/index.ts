@@ -12,6 +12,7 @@ import authRoutes from "./routes/authRoutes";
 import userRoutes from "./routes/userRoutes";
 import serviceRoutes from "./routes/serviceRoutes";
 import appointmentRoutes from "./routes/appointmentRoutes";
+import specializationRoutes from "./routes/specializationRoutes";
 import { AccessToken } from "livekit-server-sdk";
 
 const app: Express = express();
@@ -32,6 +33,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/services", serviceRoutes);
 app.use("/api/appointment", appointmentRoutes);
+app.use("/api/specializations", specializationRoutes);
 
 app.get("/", (req: Request, res: Response) => {
   res.json({

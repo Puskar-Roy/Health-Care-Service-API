@@ -3,12 +3,16 @@ import { authMiddleware } from "../middleware/middleware";
 import {
   getUpcomingAppointmentsForPatient,
   getAppointmentHistoryForPatient,
-  getUpcomingAppointmentsForDoctor,
   getAppointmentHistoryForDoctor,
   bookAppointment,
-  getAvailableSlots
+  getAvailableSlots,
+  getAllAppointmentsForPatient,
+  getAppointmentsByStatusForPatient,
+  cancelAppointment
 } from "../controllers/appointmentController";
-
+import {
+  getAppointmentDetailsForDoctor,getUpcomingAppointmentsForDoctor,markAppointmentCompleted
+} from "../controllers/doctorAppointment";
 const router = express.Router();
 
 router.get(
@@ -17,12 +21,12 @@ router.get(
   getUpcomingAppointmentsForPatient
 );
 router.get("/patient/history", authMiddleware, getAppointmentHistoryForPatient);
-router.get(
-  "/doctor/upcoming",
-  authMiddleware,
-  getUpcomingAppointmentsForDoctor
-);
-router.get("/doctor/history", authMiddleware, getAppointmentHistoryForDoctor);
+// router.get(
+//   "/doctor/upcoming/ok",
+//   authMiddleware,
+//   getUpcomingAppointmentsForDoctor
+// );
+// router.get("/doctor/history", authMiddleware, getAppointmentHistoryForDoctor);
 router.post("/book", authMiddleware, bookAppointment);
 // Exp body
 // {
@@ -35,4 +39,33 @@ router.post("/book", authMiddleware, bookAppointment);
 router.get("/doctor/:id/available-slots", authMiddleware, getAvailableSlots);
 // Exp - 
 // /doctor/:id/available-slots?date=2025-06-08
+
+router.get("/patient/all", authMiddleware, getAllAppointmentsForPatient);
+router.get(
+  "/patient/status/:status",
+  authMiddleware,
+  getAppointmentsByStatusForPatient
+);
+router.patch(
+  "/patient/cancel/:appointmentId",
+  authMiddleware,
+  cancelAppointment
+);
+// Doctor routes
+router.get(
+  "/doctor/upcoming",
+  authMiddleware,
+  getUpcomingAppointmentsForDoctor
+);
+router.get(
+  "/doctor/details/:appointmentId",
+  authMiddleware,
+  getAppointmentDetailsForDoctor
+);
+router.patch(
+  "/doctor/complete/:appointmentId",
+  authMiddleware,
+  markAppointmentCompleted
+);
+
 export default router;
